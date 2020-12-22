@@ -1,11 +1,18 @@
 package com.github.eskokado.eskcitiesapi.cities.entities;
 
 import com.github.eskokado.eskcitiesapi.states.entities.State;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "cidade")
+@TypeDefs(value = {
+        @TypeDef(name = "point", typeClass = PointType.class)
+})
 public class City {
 
     @Id
@@ -23,16 +30,21 @@ public class City {
     @Column(name = "lat_lon")
     private String geolocation;
 
+    @Type(type = "point")
+    @Column(name = "lat_lon", updatable = false, insertable = false)
+    private Point location;
+
     public City() {
     }
 
     public City(final Long id, final String name, final State state, final Integer ibge,
-                final String geolocation) {
+                final String geolocation, final Point location) {
         this.id = id;
         this.name = name;
         this.state = state;
         this.ibge = ibge;
         this.geolocation = geolocation;
+        this.location = location;
     }
 
     public Long getId() {
@@ -55,5 +67,8 @@ public class City {
         return geolocation;
     }
 
+    public Point getLocation() {
+        return location;
+    }
 }
 
