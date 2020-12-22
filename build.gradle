@@ -4,6 +4,10 @@ plugins {
 	id 'java'
 }
 
+springBoot {
+	buildInfo()
+}
+
 group = 'com.github.eskokado'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
