@@ -21,9 +21,11 @@ public class City {
     @Column(name = "nome")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "uf", referencedColumnName = "id")
-    private State state;
+    private Integer uf;
+
+//    @ManyToOne
+//    @JoinColumn(name = "uf", referencedColumnName = "id")
+//    private State state;
 
     private Integer ibge;
 
@@ -37,15 +39,25 @@ public class City {
     public City() {
     }
 
-    public City(final Long id, final String name, final State state, final Integer ibge,
+    public City(final Long id, final String name, final Integer uf, final Integer ibge,
                 final String geolocation, final Point location) {
         this.id = id;
         this.name = name;
-        this.state = state;
+        this.uf = uf;
         this.ibge = ibge;
         this.geolocation = geolocation;
         this.location = location;
     }
+
+//    public City(final Long id, final String name, final State state, final Integer ibge,
+//                final String geolocation, final Point location) {
+//        this.id = id;
+//        this.name = name;
+//        this.state = state;
+//        this.ibge = ibge;
+//        this.geolocation = geolocation;
+//        this.location = location;
+//    }
 
     public Long getId() {
         return id;
@@ -55,9 +67,13 @@ public class City {
         return name;
     }
 
-    public State getState() {
-        return state;
+    public Integer getUf() {
+        return uf;
     }
+
+//    public State getState() {
+//        return state;
+//    }
 
     public Integer getIbge() {
         return ibge;

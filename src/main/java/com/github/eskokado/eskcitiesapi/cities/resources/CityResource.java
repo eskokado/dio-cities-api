@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cities")
 public class CityResource {
 
-    @Autowired
-    private CityRepository repository;
+    private final CityRepository repository;
+
+    public CityResource(final CityRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping
     public Page<City> cities(Pageable page) {

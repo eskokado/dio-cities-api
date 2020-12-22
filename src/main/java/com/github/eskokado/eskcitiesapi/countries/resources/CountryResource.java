@@ -18,8 +18,11 @@ import java.util.Optional;
 @RequestMapping("/countries")
 public class CountryResource {
 
-    @Autowired
-    private CountryRepository repository;
+    private final CountryRepository repository;
+
+    public CountryResource(final CountryRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping
     public Page<Country> countries(Pageable page) {
